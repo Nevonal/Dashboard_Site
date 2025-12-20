@@ -155,12 +155,27 @@ def make_filename(kind, start_date, end_date, R_value):
         return f"VEN_Weekly_{start_str}_to_{end_str}_R{int(R_value)}.png"
 
     if kind == "monthly":
-        month_str = start_date.strftime("%Y-%m")
-        return f"VEN_Monthly_{month_str}_R{int(R_value)}.png"
+        start_month = start_date.strftime("%Y_%m")
+        end_month = end_date.strftime("%Y_%m")
+
+        if start_month == end_month:
+            return f"VEN_Monthly_{start_month}_R{int(R_value)}.png"
+        else:
+            return f"VEN_Monthly_{start_month}_to_{end_month}_R{int(R_value)}.png"
+
 
     if kind == "quarterly":
-        q = (start_date.month - 1) // 3 + 1
-        return f"VEN_Quarterly_{start_date.year}_Q{q}_USD.png"
+        start_q = (start_date.month - 1) // 3 + 1
+        end_q = (end_date.month - 1) // 3 + 1
+
+        start_label = f"{start_date.year}_Q{start_q}"
+        end_label = f"{end_date.year}_Q{end_q}"
+
+        if start_label == end_label:
+            return f"VEN_Quarterly_{start_label}_R{int(R_value)}.png"
+        else:
+            return f"VEN_Quarterly_{start_label}_to_{end_label}_R{int(R_value)}.png"
+
 
 # ======================================================================
 # DASHBOARD PAGE
