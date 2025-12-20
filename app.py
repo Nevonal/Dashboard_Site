@@ -28,6 +28,8 @@ if "page" not in st.session_state:
 st.markdown(
     """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
+
     .ven-header {
         display: flex;
         justify-content: space-between;
@@ -36,10 +38,14 @@ st.markdown(
         border-bottom: 1px solid #e5e5e5;
         margin-bottom: 1.2rem;
     }
+
     .ven-title {
-        font-size: 1.8rem;
-        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
     }
+
     .nav-btn button {
         background: none !important;
         border: none !important;
@@ -50,6 +56,7 @@ st.markdown(
         color: #444 !important;
         cursor: pointer !important;
     }
+
     .nav-btn.active button {
         color: #000 !important;
         border-bottom: 2px solid #000 !important;
@@ -58,6 +65,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 # -----------------------
 # Header Layout
@@ -328,3 +336,4 @@ st.markdown(
     "</div>",
     unsafe_allow_html=True
 )
+
