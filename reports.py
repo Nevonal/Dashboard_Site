@@ -430,13 +430,22 @@ def generate_monthly_dashboard_png(df_filtered, R_value, display_mode, start_dat
     unit_label = "R" if display_mode == "R" else "USD"
     r_val_display = f" (R={R_value:.0f})" if display_mode == "R" else ""
     
-    # ---- DATE RANGE ----
-    # Ensure start/end date are datetime objects for formatting
-    if not isinstance(start_date, datetime): start_date = datetime.combine(start_date, datetime.min.time())
-    if not isinstance(end_date, datetime): end_date = datetime.combine(end_date, datetime.min.time())
-    
-    plot_date_title = f"{start_date.strftime('%Y-%m-%d')} \u2192 {end_date.strftime('%Y-%m-%d')}" 
-    month_str_title = start_date.strftime('%B %Y') 
+    # ---- DATE RANGE / TITLE ----
+    if not isinstance(start_date, datetime):
+        start_date = datetime.combine(start_date, datetime.min.time())
+    if not isinstance(end_date, datetime):
+        end_date = datetime.combine(end_date, datetime.min.time())
+
+    start_month = start_date.strftime('%Y_%m')
+    end_month = end_date.strftime('%Y_%m')
+
+    if start_month == end_month:
+        month_str_title = start_date.strftime('%B %Y')
+    else:
+        month_str_title = (
+            f"{start_date.strftime('%B %Y')} → {end_date.strftime('%B %Y')}"
+        )
+
 
     # ---- STATS ----
     total_net_R = float(sum(net_r))
