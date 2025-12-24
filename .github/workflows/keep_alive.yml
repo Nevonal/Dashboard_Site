@@ -11,4 +11,5 @@ jobs:
     steps:
       - name: Visit app URL
         run: |
-          curl -L --max-time 30 https://vendashboard.streamlit.app/
+          echo "Pinging Streamlit app..."
+          curl -A "Mozilla/5.0" -L --max-time 60 https://vendashboard.streamlit.app/ || echo "Ping failed, but continuing"
