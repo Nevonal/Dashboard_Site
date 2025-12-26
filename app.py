@@ -324,6 +324,11 @@ if st.session_state.page == "howto":
         """
     )
 
+    st.image(
+        "VEN_Dashboard_GIF.gif",
+        use_container_width=True
+    )
+    
 # -----------------------
 # Footer
 # -----------------------
@@ -336,4 +341,5 @@ st.markdown(
     "</div>",
     unsafe_allow_html=True
 )
+
 
